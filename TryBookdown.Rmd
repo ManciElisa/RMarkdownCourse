@@ -1,0 +1,26 @@
+---
+title: "TryBookdown"
+output: 
+  bookdown::pdf_document2: 
+    number_sections: yes
+    toc: true
+    toc_depth: 2
+author: Elisa M.
+date: '07-03-2023 Cross-referencing'
+linestrecth: 2
+geometry: margin=0.5in
+---
+
+Nella *Tabella \@ref(tab:cars-table)* possiamo trovare le informazioni descrittive del campione
+
+```{r cars-table}
+knitr::kable(mtcars[1:5,], caption = "Informazioni descrittive")
+```
+
+Nella **Figura \@ref(fig:speed-dist)** è raffigurato un box-plot
+```{r speed-dist, fig.cap="Grafico mpg-cilindrata"}
+par(mar = c(4,4,.2,.2))
+plot(mtcars$mpg ~ mtcars$cyl)
+```
+
+

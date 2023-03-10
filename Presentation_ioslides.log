@@ -1,0 +1,14 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.10) (preloaded format=pdflatex 2023.3.6)  8 MAR 2023 17:31
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**./Presentation_ioslides.tex
+(Presentation_ioslides.tex
+LaTeX2e <2022-06-01> patch level 5
+L3 programming layer <2022-09-28>
+
+! Sorry, but C:\Users\elisa\AppData\Local\Programs\MiKTeX\miktex\bin\x64\pdflatex.exe did not succeed.
+
+! The log file hopefully contains the information to get MiKTeX going again:
+
+!   C:\Users\elisa\AppData\Local\MiKTeX\miktex\log\pdflatex.log

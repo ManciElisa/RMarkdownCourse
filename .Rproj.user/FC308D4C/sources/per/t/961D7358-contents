@@ -1,0 +1,131 @@
+---
+title: "Quarto Document"
+format: 
+  html:
+    toc: true
+    toc-title: Indice dei contenuti
+    toc-location: right
+    toc-depth: 3
+editor: source
+execute: 
+  eval: true
+  echo: true
+  warning: true
+lang: it
+---
+
+## Figura
+
+- Chunk di codice
+
+```{r}
+#| fig-cap: "Testona colorata"
+#| fig-cap-location: top
+#| out-width: 50%
+#| label: fig-testa
+#| fig-align: right
+knitr::include_graphics("image/daydreaming5final.jpg")
+```
+
+- Markdown
+
+![Bla bla](image/elefante.jpg)
+
+## Grafico
+
+```{r}
+#| echo: false
+#| fig-cap: "il grafico"
+#| fig-cap-location: margin
+#| out-width: 50%
+#| fig-align: center
+#| label: fig-grafico
+load("dati/EnvironmentUseChunks.Rdata")
+plot(data$y~data$x)
+```
+
+In @fig-grafico c'è il box plot dei dati
+
+## Colonne
+
+:::: {.columns}
+
+::: {.column width="30%"}
+
+questa è la prima colonna
+
+ggggggggggggggggggggg
+ggggggggggg
+ddddddddddddddd
+rrrrrrrrrr
+jjjjjj
+
+:::
+
+::: {.column width="30%"}
+
+questa è la seconda colonna
+
+ggggggggggggggggggggg
+ggggggggggg
+ddddddddddddddd
+rrrrrrrrrr
+jjjjjj
+
+:::
+
+::: {.column width="30%"}
+
+questa è la terza colonna
+
+ggggggggggggggggggggg
+ggggggggggg
+ddddddddddddddd
+rrrrrrrrrr
+jjjjjj
+
+:::
+
+::::
+
+## Tabset semplice
+
+::: {.panel-tabset}
+
+## intro
+
+primo tip tap
+
+## metodo
+
+secondo tap tip
+
+## risultati
+
+jyhtbgrvfds
+
+
+:::
+
+## Tabset con cose
+
+::: {.panel-tabset}
+
+## figure
+
+```{r}
+#| fig-cap: "Testona"
+#| fig-cap-location: top
+#| out-width: 50%
+#| label: fig-testa2
+#| fig-align: center
+knitr::include_graphics("image/daydreaming5final.jpg")
+```
+
+qui c'è la Figura @fig-testa2
+
+## qui non c'è niente
+
+nhtbgvdfs
+
+:::

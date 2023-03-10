@@ -1,0 +1,80 @@
+---
+output:
+  pdf_document:
+    includes:
+      before_body: titolo.sty
+    number_sections: yes
+    toc: true
+    toc_depth: 2
+bibliography: bibliografia/biblio.bib
+header-includes:
+  - \usepackage{setspace}
+  - \usepackage{multicol}
+  - \usepackage{caption}
+  - \usepackage[italian]{babel}
+  - \captionsetup{format=plain, font=small, labelfont=bf}
+  - \usepackage{graphicx}
+  - \usepackage{subcaption}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+# Elenco e parole con diversa formattazione
+
+Le variabili incluse nel dataset *PlantGrouwth* sono:
+
+1. weight
+2. group: tre condizioni
+
+    1. Un gruppo di controllo
+    2. Due gruppi sperimentali
+
+# Tabella, grafico e chunk di codice
+
+```{r, results='asis', echo=FALSE, warning=FALSE}
+load("dati/EnvironmentUseChunks.Rdata")
+library(xtable)
+print(xtable::xtable(data[1:10, 1:2],
+                     caption = "Tabella Plant Growth",
+                     label = "tab:tabPiante"),
+      comment = FALSE,
+      caption.placement = "top")
+```
+
+```{r echo=FALSE}
+plot(data$y ~ data$x)
+```
+
+# Equazione e risultati di R nel testo
+
+- Equazione: standardizazione
+
+$z=(xi-X)/sd$
+
+$z=\frac{xi-X}{sd}$
+
+```{r echo=FALSE}
+mx<-mean(data$y)
+sdx<-sd(data$y)
+xi<-data$y[1]
+```
+
+$z=\frac{`r xi`- `r round(mx,2)`}{`r round(sdx,2)`} = `r round((xi-mx)/sdx, 2)`$
+
+- Risultati di R del modello lineare
+```{r echo=FALSE, eval=TRUE}
+modello<- lm(data$y ~ data$x)
+summary(modello)
+```
+
+- Nella Tabella \ref{TabRegressione} sono mostrati i risultati del  modello di regressione 
+
+```{r echo=FALSE, eval=TRUE, results='asis', warning=FALSE, message=FALSE}
+library("stargazer")
+
+stargazer::stargazer(modello, type="latex",summary = TRUE, title="Modello di Regressione Lineare", digits = 2, header = FALSE, label = "TabRegressione")
+```
+

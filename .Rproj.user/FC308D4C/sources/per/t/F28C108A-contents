@@ -1,0 +1,63 @@
+---
+title: "PlantGrowth"
+subtitle: Course exercise
+author: "Elisa Mancinelli"
+date: Department of Developmental Psychology and Socialization,      Unviersity of
+  Padova
+output:
+  pdf_document: 
+    number_sections: yes
+    toc: true
+    toc_depth: 2
+linestrecth: 2
+geometry: margin=0.5in
+bibliography: bibliografia/biblio.bib
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Capitolo 1
+
+\color{red}{Analisi esplorative}\normalcolor
+>*Basta premere contemporaneamente il tasto Alt che si trova a sinistra della barra spaziatrice e la sequenza numerica 123 o 125 dal tastierino a destra sulla tastiera.*
+
+## ***Capitolo 1.1***
+
+\color{red}{Regressioni lineari}\normalcolor
+
+
+
+Tomato[^1]
+
+[^1]: bla bla bla
+
+Cliccare [\textcolor{blue}{qui}](https://www.salepepe.it/news/benessere/pomodoro-superalimento-fa-bene/) per vedere dei pomodori
+
+1. Ciliegini
+2. \color{yellow}{Datterini}\normalcolor
+
+    1. Datterini gialli
+    2. Datterini rossi
+    3. Datterini verdi
+
+- Sole
+    - i pomodori si piantano d'estate
+- Mare
+- Gne gne
+
+```{r, fig.cap= "Testa colorata", fig.align='right', out.width="10%"}
+knitr::include_graphics(path = "image/daydreaming5final.jpg")
+```
+
+[![Bla bla]("image/elefante.jpg")](https://www.pinterest.it/pin/364299057357935566/)
+
+
+
+Citare articolo 1 [@epifania2020dscoreapp] e poi il secondo articolo [@epifania2020implicit]
+
+
+
+
+

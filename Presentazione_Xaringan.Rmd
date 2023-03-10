@@ -1,0 +1,145 @@
+---
+title: "Presentation Xaringan"
+author: "Elisa Mancinelli"
+institute: "Università di Padova"
+date: "10/03/2023"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      highlightLanguage: r
+      highlightSpans: false
+      countIncrementalSlides: false
+    yolo: true
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+```{css, echo=F, eval = T}
+.inverse {
+  background-color: #272822;
+  color: #d6d6d6;
+  text-shadow: 0 0 20px #333;
+}
+.scrollable {
+  height: 500px;
+  overflow-y: auto;
+}
+.scrollable-auto {
+  height: 80%;
+  overflow-y: auto;
+}
+.remark-slide-number {
+  display: none;
+}
+```
+---
+# Una slide con una tabella (ver.pro!)
+
+```{r echo=FALSE}
+load("dati/EnvironmentUseChunks.Rdata")
+library(DT)
+DT::datatable(
+  head(data, 10),
+  fillContainer = FALSE, options = list(pageLength = 5)
+)
+```
+---
+# Fittare il modello - Summary dei risultati)
+
+.pull-left[
+.center[<span style="color:#347f5f">**Fittare il modello**</span>]
+
+<br>
+
+```{r echo=TRUE}
+data$y = PlantGrowth$weight
+# rinominare la variabile indipedente in x
+data$x = PlantGrowth$group
+
+# regressione
+m = lm(y ~ x, data = data)
+```
+]
+
+.pull-right[
+.center[<span style="color:#347f5f">**Table Plant Growth**</span>]
+
+<br>
+
+```{r, echo=FALSE, eval=TRUE, results='asis', warning=FALSE, message=FALSE}
+library("stargazer")
+stargazer(data[,-2], type="html",summary = TRUE, title="Tabella summary", digits = 3, header = FALSE)
+
+```
+
+]
+---
+.scrollable[
+.pull-left[
+.center[<span style="color:#7f4034">**Plot Plant growth**</span>]
+
+<br>
+
+```{r echo=FALSE}
+plot(data)
+```
+
+```{r echo=FALSE}
+plot(data$y ~ data$x)
+```
+
+]
+.pull-right[
+.center[<span style="color:#347f5f">**Logo Pianta**</span>]
+
+<br>
+
+```{r echo=FALSE, out.width="800%", fig.align='center'}
+knitr::include_graphics("logo/PlantLogo.png")
+```
+]
+
+]
+---
+# Codice scrollabile
+
+.scrollable[
+```{r eval=FALSE, echo=TRUE}
+irt.icc = function(model) {
+  item_par = model$item
+  est_theta = seq(-4,4, length.out=1000)
+  item_prob = list()
+  if (any(grep("guess", colnames(item_par))) == F) {
+    for (i in 1:nrow(item_par)) {
+      item_prob[[i]] = data.frame(theta = est_theta)
+      item_prob[[i]]$it_p = IRT(item_prob[[i]]$theta, 
+                          b = item_par[i, "xsi.item"], 
+                          a = item_par[i, "B.Cat1.Dim1"])
+      item_prob[[i]]$item = item_par[i, "item"]
+}
+  } else {
+     for (i in 1:nrow(item_par)) {
+      item_prob[[i]] = data.frame(theta = est_theta)
+      item_prob[[i]]$it_p = IRT(item_prob[[i]]$theta, 
+                          b = item_par[i, "AXsi_.Cat1"], 
+                          a = item_par[i, "B.Cat1.Dim1"], 
+                          c = item_par[i, "guess"])
+      item_prob[[i]]$item = item_par[i, "item"]
+}
+  }
+  p = do.call("rbind", item_prob)
+  gp = ggplot(p, 
+       aes(x = theta, y = it_p, group = item, col =
+             item)) + geom_line(lwd = 1)
+  object = list(prob.data = p, 
+              icc.graph = gp)
+return(object)
+}
+```
+
+]

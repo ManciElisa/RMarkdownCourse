@@ -1,0 +1,163 @@
+---
+title: "Notes and exercises from Lesson 1 onwards"
+author: "Elisa Mancinelli"
+date: Department of Developmental Psychology and Socialization,      Unviersity of
+  Padova
+output:
+  pdf_document: 
+    number_sections: yes
+    toc: true
+    toc_depth: 2
+linestrecth: 2
+geometry: margin=1in
+---
+# Lezione 2, 07-03-2023 - UseChunks
+*\color{red}{USARE CHUNCK DI CODICE}*\normalcolor
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      comment = " ",
+                      out.width = "60%",
+                      fig.align = "center")
+#load i dati dall'environment, senza caricare il dataset per intero
+load("dati/EnvironmentUseChunks.Rdata")
+#data<-PlantGrowth
+
+#Il codice si può troncare in modo che non venga quell’orrore che avete visto, 
+# quindi non mostra tutto il dataset che è brutto! --> tronca l'output
+hook_output <- knitr::knit_hooks$get("output")
+
+knitr::knit_hooks$set(output = function(x, options) {
+if (!is.null(n <- options$out.lines)) {
+x <- xfun::split_lines(x)
+if (length(x) > n) {
+# truncate the output
+x <- c(head(x, n), "....\n")
+}
+x <- paste(x, collapse = "\n")
+}
+hook_output(x, options)
+})
+```
+
+## *Exploratory analysis*
+- Create un nuovo chunk per il summary dei dati summary(dati) senza codice
+e con “NA” al posto degli hashtag nell’output
+```{r DescribePlantGrowth, echo=FALSE, comment= "NA" }
+summary(data)
+
+library(DescTools)
+DescTools::Desc(data$weight)
+
+data$y = PlantGrowth$weight
+# rinominare la variabile indipedente in x
+data$x = PlantGrowth$group
+# maggiori dettagli sulla x
+table(data$x)
+```
+
+## *Exercises*
+
+- Nuovo chunk dove eseguite il codice del vostro dataset che trovate qui (non fate la regressione e il grafico) ma non mostrate né il codice né i risultati
+
+```{r MainAnalysis, echo=FALSE, result = "hide"}
+
+
+# grafico 
+plot(data$y ~ data$x)
+
+# regressione
+m = lm(y ~ x, data = data)
+# summary del modello
+summary(m)
+
+```
+
+- Nuovo chunk dove eseguite il codice del grafico (plot(data$y ~ data$x))
+senza codice
+
+```{r, echo=FALSE, eval=TRUE}
+# grafico 
+plot(data$y ~ data$x)
+
+```
+
+- Nuovo chunk dove mostrate il codice del grafico (plot(data$y ~ data$x)) senza risultati
+
+```{r, echo=TRUE, eval=FALSE}
+# grafico 
+plot(data$y ~ data$x)
+```
+
+- Tagliate l’output del vostro dataset in modo che vengano mostrate le prime 10 osservazioni
+
+```{r, out.lines=11, echo=FALSE}
+
+data
+```
+
+## *Create tables*
+### Exercises
+
+- Tabella di summary del vostro dataset con 3 decimali
+```{r, echo=FALSE, eval=TRUE, results='asis', warning=FALSE, message=FALSE}
+library("stargazer")
+stargazer(data, type="latex",summary = TRUE, title="Tabella summary", digits = 3, header = FALSE)
+
+```
+
+- Tabella di summary del vostro modello di regressione
+```{r,echo=FALSE, eval=TRUE, results='asis', warning=FALSE, message=FALSE}
+stargazer(m, type="latex",summary = TRUE, title="Tabella Modello di Regressione Lineare", digits = 2, header = FALSE)
+
+```
+
+
+- Tabella di model comparison con modello nullo m0
+```{r,echo=FALSE, eval=TRUE, results='asis', warning=FALSE, message=FALSE}
+m0 = lm(y ~ 1, data = data)
+stargazer(m0, m, type="latex", title = "Model Comparison", digits = 2, header = FALSE, intercept.top = TRUE, intercept.bottom = FALSE)
+
+```
+
+# Lezione 3 - 08-03-2023
+
+Se si mettono 4 spazi prima di scrivere, la scritta compare con il font di R.
+
+Se vogliamo che le cose compaiono con il font di R bisogna mettere le parole dentro gli pseudo-apostrofi (chiamati backtick; *il backtick si fa con ALT+96*) `Hello` 
+
+- la **r** da mettere prima del codice, sempre tra i backtick, si mette per dire che lì bisogna fare un codice R.
+
+- Di seguito esempi di come fare un equazione, in cui sul pdf si vede solo il risulato dei valori. Per vedere le singole parti (ad es. *xi*, che è la prima osservazione) metto **tutto tra backtick con la r**. Poi, per mostrare anche il risultato, riporto l'equazione ma con i backtick solo agli estremi dell'equazione, così la calcola tutta
+
+$\frac{`r round(sum(rock$peri),2)`}{`r nrow(rock)`} = `r round(round(sum(rock$peri),2)/nrow(rock),2)`$
+
+*Provo a scrivere un'equazione*
+```{r}
+#create mean and sd
+my<-mean(data$y)
+sdy<-sd(data$y)
+
+## first observation of the y variable
+#data[1, "y"] or data$y[1]
+```
+
+- Provate a scrivere la formula per standardizzare la variabile y sup
+
+$z=(x-X)/sd$
+
+$z=\frac{(x-X)}{sd}$
+
+- Standardizzate il primo valore della del vostro dataset e riportate il risultato
+nell’equazione
+
+$z=\frac{`r round(data[1,"y"],2)`- `r round(my,2)`}{`r round(sdy)`} = `r round((data[1,"y"]-my)/sdy,2)`$[^1]
+
+[^1]:\textcolor{red}{N.B: chiamiamo ambiente matematico lo spazio che c'è tra due dollari; all'interno dei due dollari, si mette il codice dell'equazione da calcolare}
+
+## Slids 03-Presentazioni
+
+Fare le slide su RMarkdown mi permette di creare delle slide interattive.
+
+- **VEDI PRESENTATION ioslides**

@@ -1,0 +1,111 @@
+---
+title: "Plant Growth"
+author: "Elisa Mancinelli"
+date: '2023-03-09'
+output:
+  pdf_document: 
+    includes:
+      before_body: titolo.sty
+    number_sections: yes
+    keep_tex: yes
+    toc: true
+    toc_depth: 2
+bibliography: bibliografia/biblio.bib
+header-includes: 
+  - \usepackage{setspace}
+  - \usepackage{multicol}
+  - \usepackage{caption}
+  - \usepackage[italian]{babel}
+  - \captionsetup{format=plain, font=small, labelfont=bf}
+  - \usepackage{graphicx}
+  - \usepackage{subcaption}
+---
+
+```{r setup, include=FALSE}
+  
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Introduzione
+
+Bello studiar le piante
+
+Citare articolo 1 [@epifania2020dscoreapp] e poi il secondo articolo [@epifania2020implicit]
+
+
+# Metodo
+
+Le condizioni con sui studiamo le piante
+
+- Una condizione di controllo
+- Due condizioni sperimentali
+
+# Risultati
+
+- Inserite una Figura con tre sottofigure (due foto e il grafico del vostro dataset) con rispettive cross-reference nel testo
+
+Nella figura \ref{fig:elef} troviamo un mega elefante
+
+\begin{figure}
+\centering
+\caption{Elefante.}
+\label{fig:elef}
+```{r, out.width="50%", eval=TRUE, echo=FALSE}
+knitr::include_graphics("image/elefante.jpg")
+```
+
+\end{figure}
+
+
+Nella Figura \ref{fig:figTripla} si trovano due immagini a caso e il grafico delle piante. 
+
+Nello specifico, in Figura \ref{sub:elefant} c'è un elefante, mentre in Figura \ref{sub:testa} c'è una mega testa colorata.Invece, in Figura \ref{sub:grafico} c'è un plot del dataset Plant growth
+
+\begin{figure}
+  \centering
+  \begin{subfigure}{0.3\textwidth}
+```{r echo=FALSE, out.width="80%",fig.align='center'}
+knitr::include_graphics("image/elefante.jpg")
+```
+
+\caption{Elefante.}
+\label{sub:elefant}
+\end{subfigure}
+\begin{subfigure}{0.3\textwidth}
+```{r echo=FALSE, out.width="80%", fig.align='center'}
+knitr::include_graphics("image/daydreaming5final.jpg")
+```
+
+\caption{Testa colorata}
+\label{sub:testa}
+\end{subfigure}
+\begin{subfigure}{0.3\textwidth}
+```{r echo=FALSE, out.width="80%", fig.align='center'}
+load("dati/EnvironmentUseChunks.Rdata")
+plot(data)
+```
+
+\caption{Grafico Piante.}
+\label{sub:grafico}
+\end{subfigure}
+\caption{Figura Tripla}
+\label{fig:figTripla}
+\end{figure}
+
+
+I risultati della Figura \ref{sub:grafico} sono anche riprotati nella Tabella \ref{tab:tabPiante}
+
+```{r, results='asis', echo=FALSE, warning=FALSE}
+library(xtable)
+print(xtable::xtable(data[1:10, ],
+                     caption = "Tabella Plant Growth",
+                     label = "tab:tabPiante"),
+      comment = FALSE,
+      caption.placement = "top")
+```
+
+
+
+\clearpage
+
+# Bibliografia

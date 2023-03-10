@@ -1,0 +1,114 @@
+---
+title: "Presentazione Latex"
+author: |
+  | Elisa Mancinelli
+  | University of Padova
+date: '2023-03-09'
+institute: "bla bla e-mail"
+output: 
+  beamer_presentation:
+    theme: CambridgeUS
+    colortheme: beaver
+    fonttheme: serif
+    highlight: haddock
+header-includes:
+  - \usepackage{graphicx}
+  - \usepackage{setspace}
+  - \usepackage{tabularx}
+  - \usepackage[italian]{babel}
+  - \usepackage{tikzsymbols}
+  - \usepackage{subcaption}
+  - \usepackage{tikz}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Slide 1
+
+\begin{columns}
+\begin{column}{0.5\textwidth}
+Questa è la colonna 1
+\end{column}
+
+\pause
+
+\begin{column}{0.5\textwidth}
+Questa è la colonna 2
+\end{column}
+
+\end{columns}
+
+## Slide 2
+
+::: columns
+
+::::column
+\onslide<2-3> 
+```{r echo=FALSE, out.width="50%", fig.align='center'}
+knitr::include_graphics("image/elefante.jpg")
+```
+
+::::
+
+
+
+:::: column
+
+\onslide<3-3> Testo testo testo
+
+::::
+
+:::
+
+\onslide<4-1> Bla bla bla 
+
+## Slide 3
+
+::: columns
+
+::::column
+
+```{r echo=FALSE, out.width="50%", fig.align='center'}
+knitr::include_graphics("logo/PlantLogo.png")
+```
+
+::::
+
+
+
+:::: column
+
+\onslide<2-3> Testo testo testo 
+\onslide<3-3>
+```{r echo=FALSE, out.width="50%", fig.align='center'}
+knitr::include_graphics("image/elefante.jpg")
+```
+
+::::
+
+:::
+
+## Slide 4 - con i blocchi
+
+\onslide<3-3>
+\begin{block}{Il costrutto di interesse}
+
+bla bla bla
+
+\end{block}
+
+\onslide<2-2>
+\begin{exampleblock}{blocchi di esempio}
+
+bla bla bla verde
+
+\end{exampleblock}
+
+\onslide<1-3>
+\begin{alertblock}{blocchi di alert}
+
+bla bla bla rosso
+
+\end{alertblock}

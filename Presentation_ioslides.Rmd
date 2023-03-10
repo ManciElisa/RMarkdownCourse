@@ -1,0 +1,107 @@
+---
+title: "Presentation_ioslides"
+author: "Elisa Mancinelli"
+date: "08-03-2023"
+output:
+  ioslides_presentation:
+    logo: logo/logo-dpss-web.png
+    widescreen: yes
+    css: fileCSS1.css
+  beamer_presentation: default
+---
+<style>
+.forceBreak { -webkit-column-break-after: always; break-after: column; }
+.myClass{font-size: 14px;}
+</style>
+
+```css
+pre { 
+  max-height: 700px;
+  overflow-y: auto;
+}
+
+pre[class] {
+  max-height: 500px;
+}
+
+.scroll-100 {
+  max-height: 500px;
+  overflow-y: auto;
+  background-color: inherit;
+}
+```
+
+```
+
+```{r setup, include=FALSE, }
+knitr::opts_chunk$set(echo = FALSE)
+
+```
+
+# ESERCIZI - FARE LE SLIDE
+
+## Slide 1 testo colorato e cambio font
+
+<span style="color:red"> bla bla bla </span>
+
+<font size =4> bla bla bla </font size>
+
+## Slide 2 immagine con Markdown
+![<span style="color:black">Bla bla</span style>](image/elefante.jpg)
+
+## Slide 3 immagine con RMarkdown
+```{r, fig.cap="Mega-testa colorata", fig.align='center', out.width = "60%"}
+knitr::include_graphics("image/daydreaming5final.jpg")
+```
+
+## Slide 4 immagine nel testo
+
+In questa slide mettiamo un <span style="color:blue">*immagine*</span style> <img width="10%" height="10%" src="image/elefante.jpg"> dentro il testo
+
+- bla
+- bla bla 
+- bal bla bla
+
+## Slide 5 - contenuti incrementali {.build}
+<div>
+Nomi
+
+Cose
+</div>
+
+Città
+
+gne gne
+
+## Slide 6 - più colonne {.columns-2 .build}
+
+trallalero
+
+<p class="forceBreak"></p>
+
+trallallà
+
+
+## slide 7 - colonne - metodo con div {.build}
+<div style="float: left; width: 30%; text-align: left;">
+<span style="color:blue">Trallalero</span style>
+</div>
+
+
+<div style="float: right; width: 30%; text-align: right;">
+<span style="color:blue">trallallà</span style>
+
+Un elefante <img width="20%" height="20%" src="image/elefante.jpg">
+</div>
+
+## slide 8 - chunk di codice
+ciò che si è detto nelle lezioni precedenti sui chunk vale anche qui, per le slides
+
+- ridurre il font del codice
+    - mettere myClass, presente sopra il primo chunk
+    
+```{r class.source="myClass"}
+
+```
+
+
